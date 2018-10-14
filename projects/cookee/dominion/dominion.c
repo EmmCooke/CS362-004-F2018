@@ -10,6 +10,7 @@ void playSmithy(int currentPlayer, struct gameState *state, int handPos);
 void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
                     int drawnTreasure, int z);
 void playCouncilRoom(int currentPlayer, struct gameState *state, int handPos);
+void playVillage(int currentPlayer, struct gameState * state, int handPos);
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -849,14 +850,15 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case village:
-      //+1 Card
-      drawCard(currentPlayer, state);
+      // //+1 Card
+      // drawCard(currentPlayer, state);
 			
-      //+2 Actions
-      state->numActions = state->numActions + 2;
+      // //+2 Actions
+      // state->numActions = state->numActions + 2;
 			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      // //discard played card from hand
+      // discardCard(handPos, currentPlayer, state, 0);
+      playVillage(currentPlayer, state, handPos);
       return 0;
 		
     case baron:
@@ -1396,6 +1398,14 @@ void playCouncilRoom(int currentPlayer, struct gameState *state, int handPos)
     }
     discardCard(handPos, currentPlayer, state, 0);
   }
+}
+
+// Village
+void playVillage(int currentPlayer, struct gameState * state, int handPos)
+{
+  drawCard(currentPlayer, state);
+  state->numActions = state->numActions + 2;
+  discardCard(handPos, currentPlayer, state, 0);
 }
 
 //end of dominion.c
