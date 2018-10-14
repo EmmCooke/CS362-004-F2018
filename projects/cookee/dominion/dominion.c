@@ -9,6 +9,7 @@
 void playSmithy(int currentPlayer, struct gameState *state, int handPos);
 void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
                     int drawnTreasure, int z);
+void playCouncilRoom(int currentPlayer, struct gameState *state, int handPos);
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -695,26 +696,27 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			
     case council_room:
       //+4 Cards
-      for (i = 0; i < 4; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
+ //      for (i = 0; i < 4; i++)
+	// {
+	//   drawCard(currentPlayer, state);
+	// }
 			
-      //+1 Buy
-      state->numBuys++;
+ //      //+1 Buy
+ //      state->numBuys++;
 			
-      //Each other player draws a card
-      for (i = 0; i < state->numPlayers; i++)
-	{
-	  if ( i != currentPlayer )
-	    {
-	      drawCard(i, state);
-	    }
-	}
+ //      //Each other player draws a card
+ //      for (i = 0; i < state->numPlayers; i++)
+	// {
+	//   if ( i != currentPlayer )
+	//     {
+	//       drawCard(i, state);
+	//     }
+	// }
 			
-      //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 0);
+ //      //put played card in played card pile
+ //      discardCard(handPos, currentPlayer, state, 0);
 			
+      playCouncilRoom(currentPlayer, state, handPos);
       return 0;
 			
     case feast:
@@ -1374,6 +1376,25 @@ void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
       state->discard[currentPlayer][state->discardCount[currentPlayer]++] = tempHand[z - 1];
       z = z - 1;
     }
+  }
+}
+
+// Council Room
+void playCouncilRoom(int currentPlayer, struct gameState *state, int handPos)
+{
+  int i;
+  for (i = 0; i < 4; i++)
+  {
+    drawCard(currentPlayer, state);
+  }
+  state->numBuys++;
+  for (i = 0; i < state->numPlayers; i++)
+  {
+    if (i != currentPlayer)
+    {
+      drawCard(i, state);
+    }
+    discardCard(handPos, currentPlayer, state, 0);
   }
 }
 
