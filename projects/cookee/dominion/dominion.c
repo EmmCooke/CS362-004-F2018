@@ -8,7 +8,7 @@
 // Card function prototypes
 void playSmithy(int currentPlayer, struct gameState *state, int handPos);
 void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
-                    int drawnTreasure, int cardDrawn, int z);
+                    int drawnTreasure, int z);
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -690,7 +690,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	     // state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	     // z=z-1;
       // }
-      playAdventurer(currentPlayer, state, temphand, drawntreasure, cardDrawn, z);
+      playAdventurer(currentPlayer, state, temphand, drawntreasure, z);
       return 0;
 			
     case council_room:
@@ -1348,8 +1348,9 @@ void playSmithy(int currentPlayer, struct gameState *state, int handPos)
 
 // Adventurer
 void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
-                   int drawnTreasure, int cardDrawn, int z)
+                   int drawnTreasure, int z)
 {
+  int cardDrawn;
   while (drawnTreasure < 2)
   {
     if (state->deckCount[currentPlayer] < 1)
