@@ -6,12 +6,12 @@
 #include <stdlib.h>
 
 // Card function prototypes
-void playSmithy(int currentPlayer, struct gameState *state, int handPos);
-void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
-                    int drawnTreasure, int z);
-void playCouncilRoom(int currentPlayer, struct gameState *state, int handPos);
-int playMine(int currentPlayer, struct gameState *state, int choice1, int choice2, int handPos);
-void playVillage(int currentPlayer, struct gameState * state, int handPos);
+// void playSmithy(int currentPlayer, struct gameState *state, int handPos);
+// void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
+//                     int drawnTreasure, int z);
+// void playCouncilRoom(int currentPlayer, struct gameState *state, int handPos);
+// int playMine(int currentPlayer, struct gameState *state, int choice1, int choice2, int handPos);
+// void playVillage(int currentPlayer, struct gameState * state, int handPos);
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
