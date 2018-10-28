@@ -55,9 +55,13 @@ unittest4: unittest4.c dominion.o rngs.o
 
 unittestresults: all unittest1 unittest2 unittest3 unittest4
 	unittest1 > unittestresults.out
+	gcov unittest1 >> unittestresults.out
 	unittest2 >> unittestresults.out
+	gcov unittest2 >> unittestresults.out
 	unittest3 >> unittestresults.out
+	gcov unittest3 >> unittestresults.out
 	unittest4 >> unittestresults.out 
+	gcov unittest4 >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
