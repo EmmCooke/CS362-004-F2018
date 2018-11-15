@@ -1350,7 +1350,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 // Smithy
 void playSmithy(int currentPlayer, struct gameState *state, int handPos)
 {
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < 3; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -1380,11 +1380,11 @@ void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
       state->handCount[currentPlayer]--;
       z++;
     }
-    while ((z - 1) >= 0)
-    {
-      state->discard[currentPlayer][state->discardCount[currentPlayer]++] = tempHand[z - 1];
-      z = z - 1;
-    }
+  }
+  while ((z - 1) >= 0)
+  {
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = tempHand[z - 1];
+    z = z - 1;
   }
 }
 
@@ -1392,7 +1392,7 @@ void playAdventurer(int currentPlayer, struct gameState *state, int * tempHand,
 void playCouncilRoom(int currentPlayer, struct gameState *state, int handPos)
 {
   int i;
-  for (i = 0; i < 5; i++)
+  for (i = 0; i < 4; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -1441,7 +1441,7 @@ int playMine(int currentPlayer, struct gameState *state, int choice1, int choice
 void playVillage(int currentPlayer, struct gameState * state, int handPos)
 {
   drawCard(currentPlayer, state);
-  //state->numActions = state->numActions + 2;
+  state->numActions = state->numActions + 2;
   discardCard(handPos, currentPlayer, state, 0);
 }
 
